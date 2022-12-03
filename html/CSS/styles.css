@@ -1,0 +1,43 @@
+
+    body {
+     background-color: rgb(0, 140, 255);
+    }
+
+     form.form-example {
+         display: table;
+         background-color: rgb(183, 255, 0);
+     }
+
+     div.form-example {
+         display: table-row;
+         background-color: aquamarine;
+         margin-left: 200px;
+         padding: 20px;
+     }
+
+     label,
+     input {
+         display: table-cell;
+         margin-bottom: 10px;
+         background-color:aqua;
+     }
+
+     label {
+         padding-right: 10px;
+     }
+
+     .my-table {
+         border: 2px dotted blue;
+         margin-left: 200px;
+         padding: 20px;
+     }
+
+     #header {
+        background-color: chartreuse;
+     }
+
+     .footer {
+        background-color: blueviolet;
+        margin-left: 200px;
+         padding: 20px;
+     }

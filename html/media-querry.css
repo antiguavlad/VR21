@@ -1,0 +1,193 @@
+@media(min-width: 320px) {
+    body {
+        background-color: blue;
+
+    }
+
+    .resize {
+        background-color: black;
+        height: 100px;
+        width: 100px;
+    }
+
+    .mediaQuery {
+        background: #32557f;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: black;
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media(min-width: 320px) {
+    body {
+        background-color: rgb(0, 213, 255);
+
+    }
+
+    .resize {
+        background-color: black;
+        height: 100px;
+        width: 100px;
+    }
+
+    .mediaQuery {
+        background: #687f32;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(239, 8, 8);
+        height: 300px;
+        width: 300px;
+    }
+}
+
+@media (min-width:320px) {
+
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+    body {
+        background-color: rgb(255, 170, 0);
+
+    }
+
+    .mediaQuery {
+        background: #7f7c32;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(192, 10, 243);
+        height: 400px;
+        width: 400px;
+    }
+}
+
+@media (min-width:480px) {
+
+    /* smartphones, Android phones, landscape iPhone */
+    body {
+        background-color: rgb(255, 0, 234);
+
+    }
+
+    .resize {
+        background-color: black;
+        height: 300px;
+        width: 300px;
+    }
+
+    .mediaQuery {
+        background: #f02b08;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(246, 69, 181);
+        height: 500px;
+        width: 500px;
+    }
+}
+
+@media (min-width:600px) {
+
+    /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+    body {
+        background-color: blueviolet;
+
+    }
+
+    .resize {
+        background-color: black;
+        height: 300px;
+        width: 300px;
+    }
+
+    .mediaQuery {
+        background: #7b030d;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(140, 211, 239);
+        height: 700px;
+        width: 700px;
+    }
+}
+
+@media (min-width:801px) {
+
+    /* tablet, landscape iPad, lo-res laptops ands desktops */
+    body {
+        background-color: red;
+
+    }
+
+    .resize {
+        background-color: black;
+        height: 300px;
+        width: 300px;
+    }
+
+    .mediaQuery {
+        background: #16f4e2;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(65, 33, 223);
+        height: 900px;
+        width: 900px;
+        right: 100px;
+        left: auto;
+        top: auto;
+        bottom: auto;
+    }
+}
+
+@media (min-width:1025px) {
+
+    /* big landscape tablets, laptops, and desktops */
+    body {
+        background-color: brown;
+
+    }
+
+    .resize {
+        background-color: black;
+        height: 300px;
+        width: 300px;
+    }
+
+    .mediaQuery {
+        background: #5ff9c3;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(135, 194, 236);
+        height: 1300px;
+        width: 1300px;
+    }
+}
+
+@media (min-width:1281px) {
+
+    /* hi-res laptops and desktops */
+    body {
+        background-color: yellow;
+
+    }
+
+    .resize {
+        background-color: black;
+        height: 300px;
+        width: 300px;
+    }
+
+    .mediaQuery {
+        background: #d2eee5;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: rgb(240, 233, 175);
+        height: 1600px;
+        width: 1600px;
+    }
+}

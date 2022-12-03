@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Sizing
+
+    </title>
+
+    <style>
+
+        .content-box{
+            box-sizing: content-box;
+            width: 300px;
+            height: 282px;
+            padding: 1rem;
+            border: solid 5px  rgb(200, 255, 0);
+        }
+
+        .border-box{
+            box-sizing: border-box;
+            width: 340px;
+            height: 330px;
+            /* padding: 1rem; */
+            border: solid 5px #00aaff;
+            position:absolute;
+            top: 0;
+            /* background-color: red; */
+        }
+
+        .border-box :hover{
+            opacity: 0;
+            /* color: blueviolet; */
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="content-box">
+        <img src="images/Lebron.jpe" alt=""  width= "100%" height="100%">
+        <!-- <img src="images/Lebron.jpe" alt=""  width= "300" height="300"> -->
+    </div>
+
+    <div class="border-box">
+
+        <img src="images/michael-jordan.jpe" alt= "" width= "100%" height="100%">
+        <!-- <img src="images/michael-jordan.jpe" alt= "" width= "300" height="310"> -->
+    </div>
+    
+</body>
+</html>
