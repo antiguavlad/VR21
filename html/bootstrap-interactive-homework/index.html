@@ -11,7 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 
-  <script src="./bootstrap-interactive.js"></script>
+
 
   <style>
     /* body {
@@ -52,10 +52,13 @@
           <a class="navbar-brand">NBA Players</a>
           <!-- Button trigger modal -->
           <!-- document.getElmentById('add-button') -->
-          <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#createModal"
-            id="add-button">
+          <button type="button" class="btn btn-info" id="add-button">
             Add
           </button>
+          <!-- using the onclick on the button -->
+          <!-- <button type="button" class="btn btn-info" id="add-button" onclick="addCard()">
+            Add
+          </button> -->
 
           <!-- Modal -->
           <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -242,9 +245,10 @@
     const addCard = () => {
       console.log("added another NBA-player card using onclick method")
     } -->
+  <!-- 
+  </script> -->
 
-  </script>
-
+  <script src="./bootstrap-interactive.js"></script>
 </body>
 
 </html>
