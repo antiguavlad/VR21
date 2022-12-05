@@ -71,34 +71,43 @@
 //     console.log("added another NBA-player card using onclick method")
 // }
 
-document.querySelector("#add-button").addEventListener("click", (e) => {
-    const contentCard = `
-    <div class="col-md-3">
-        <div class="card">
-            <img
-                src="https://images.complex.com/complex/images/c_scale,f_auto,q_auto,w_1920/fl_lossy,pg_1/utgfcacoxl6hwd2bj2ay/10-most-influential-nba-players-2022-original-nonw?fimg-ssr-default"
-                class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">NBA PLAYERS</h5>
-                <p class="card-text">
-                    Some quick example text to build on the NBA PLAYERS and make up
-                    the bulk of the card's content.
-                </p>
-                <div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
-                        Update
-                    </button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                        Delete
-                    </button>
-                </div>
-            </div>
-        </div>
-</div>`;
+// working adding all the card for the NBA players: 
+//------------------------------------------------//
+
+// document.querySelector("#add-button").addEventListener("click", (e) => {
+//     const contentCard = `
+//     <div class="col-md-3">
+//         <div class="card">
+//             <img
+//                 src="https://images.complex.com/complex/images/c_scale,f_auto,q_auto,w_1920/fl_lossy,pg_1/utgfcacoxl6hwd2bj2ay/10-most-influential-nba-players-2022-original-nonw?fimg-ssr-default"
+//                 class="card-img-top" alt="..." />
+//             <div class="card-body">
+//                 <h5 class="card-title">NBA PLAYERS</h5>
+//                 <p class="card-text">
+//                     Some quick example text to build on the NBA PLAYERS and make up
+//                     the bulk of the card's content.
+//                 </p>
+//                 <div>
+//                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
+//                         Update
+//                     </button>
+//                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+//                         Delete
+//                     </button>
+//                 </div>
+//             </div>
+//         </div>
+// </div>`;
 
 
-    document
-        .querySelector(".row")
-        .insertAdjacentHTML("beforeend", contentCard);
+//     document
+//         .querySelector(".row")
+//         .insertAdjacentHTML("beforeend", contentCard);
 
-});
+// });
+
+
+//--------------------------------------------------------------------------------------//
+
+
+// ANOTHER WAY TO ADD THE COLUMNS AND CARDS BELOW: is adding manually using vanilla JavaScript
