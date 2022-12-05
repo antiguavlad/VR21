@@ -173,9 +173,9 @@
     crossorigin="anonymous"></script>
 
   <script>
-// How do I create an element:
+    // How do I create an element:
     const cardColumn = document.createElement("div"); // in order to create the element = pass the element in this case is the div
-    cardColumn.setAttribute("class", "col-md-3 one two three" ); //one two three represent multiple classes in one 
+    cardColumn.setAttribute("class", "col-md-3 one two three"); //one two three represent multiple classes in one 
     cardColumn.innerHTML = "My Card NBA-Player";
 
 
@@ -204,7 +204,7 @@
     //adding the card dynamically: 
 
     // const contentCard = `
-    
+
     // <div class="col-md-3">
     //       <div class="card">
     //         <img
@@ -230,6 +230,10 @@
     // `;
 
     // document.querySelector('.row').innerHTML = contentCard;
+
+    document.querySelector("#add-button").addEventListener("click", (e) => {
+      console.log("Add new NBA Player card") //is printing Add new NBA Player card
+    })
 
   </script>
 
