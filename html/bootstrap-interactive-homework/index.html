@@ -11,6 +11,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 
+  <script src="./bootstrap-interactive.js"></script>
+
   <style>
     /* body {
       color: black;
@@ -172,7 +174,7 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
     crossorigin="anonymous"></script>
 
-  <script>
+  <!-- <script>
     // How do I create an element:
     const cardColumn = document.createElement("div"); // in order to create the element = pass the element in this case is the div
     cardColumn.setAttribute("class", "col-md-3 one two three"); //one two three represent multiple classes in one 
@@ -231,15 +233,23 @@
 
     // document.querySelector('.row').innerHTML = contentCard;
 
+    // this is the most preferred way to add the event listener
     document.querySelector("#add-button").addEventListener("click", (e) => {
       console.log("Add new NBA Player card") //is printing Add new NBA Player card
     })
+
+    // another way to query below
+    const addCard = () => {
+      console.log("added another NBA-player card using onclick method")
+    } -->
 
   </script>
 
 </body>
 
 </html>
+
+
 
 <!-- PROJECT INSTRUCTIONS: -->
 
