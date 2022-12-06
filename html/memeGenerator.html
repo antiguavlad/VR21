@@ -11,17 +11,144 @@
     <title>Meme</title>
 
     <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: white;
+        overflow: hidden;
+      }
+
+      .navbar-brand {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: prespective(1000px) translate(-50%, -50%);
+        transform: skewY(15deg);
+        transition: 0.5s;
+      }
+
+      .navbar-brand:hover {
+        transform: prespective(1000px) translate(-50%, -50%);
+        transform: skewY(360deg);
+      }
+
+      .navbar-brand h1 span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+        font-size: 12em;
+        color: #fff;
+        transform-style: preserve-3d;
+        transition: 0.8s;
+      }
+      .navbar-brand h1 span:nth-child(1) {
+        clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      }
+
+      .navbar-brand h1 span:nth-child(2) {
+        color: #5e17eb;
+        transform: translate(-50%, -50%) skewX(-60deg);
+        left: -38px;
+        clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%);
+      }
+
+      .navbar-brand h1 span:nth-child(3) {
+        transform: translate(-50%, -50%) skewY(0deg);
+        left: -76px;
+        clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      }
+
+      .navbar-brand:hover h1 span:nth-child(2),
+      .navbar-brand:hover h1 span:nth-child(3) {
+        transform: translate(-50%, -50%) skewX(0deg);
+        left: 0;
+        color: #fff;
+      }
+      body {
+        font-family: Tahoma, sans-serif;
+      }
+
+      .navbar-brand {
+        font-family: Tahoma, sans-serif;
+        font-size: xx-large;
+        color: rgb(200, 255, 0);
+        background-color: #00aaff;
+        margin-left: auto;
+        margin-right: auto;
+      }
       .card {
         position: relative;
       }
       .card-title {
         position: absolute;
         top: 1rem;
+        -webkit-text-stroke-color: rgb(248, 26, 222);
+      }
+      h5.card-title {
+        position: absolute;
+        top: 1rem;
+        color: blueviolet;
+        -webkit-text-stroke-color: rgb(248, 26, 222);
+      }
+      #topText {
+        font-size: x-large;
+        color: rgb(230, 158, 35);
       }
       .card-text {
         position: absolute;
         bottom: 4em;
+        -webkit-text-stroke-width: 2px;
+        /* -webkit-text-stroke-color: rgb(200, 255, 0); */
+        -webkit-text-stroke-color: rgb(248, 26, 222);
+        /* font-size: 3em; */
       }
+      .card-img-top {
+        /* float: left; */
+        /* width: 305px; */
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        /* -webkit-text-stroke-color: rgb(248, 26, 222); */
+      }
+      #topText {
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: rgb(113, 101, 235);
+      }
+      /* -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: black;  */
+
+      /* color: rgb(200, 255, 0); */
+      #bottomText {
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: blue;
+      }
+      .card {
+        padding: auto;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+      .btn {
+        background: #00aaff;
+      }
+
+      /* .feedback {
+  background-color : #31B0D5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #46b8da;
+}
+
+#mybutton {
+  position: fixed;
+  bottom: -4px;
+  right: 10px;
+} */
     </style>
   </head>
 
@@ -29,7 +156,9 @@
     <!-- Navbar -->
     <nav class="navbar bg-light">
       <div class="container">
-        <a class="navbar-brand">Navbar</a>
+        <a class="navbar-brand" navbar navbar-dark bg-dark
+          >MEME-GENERATOR!!!!!! :)
+        </a>
         <form class="d-flex">
           <button
             type="button"
@@ -154,9 +283,9 @@
         const closeBtn = document.querySelector('[data-bs-dismiss="modal"]');
         closeBtn.click();
       }
-
+      // add card to UI:
       function addCardToUI(cardData) {
-        // Create template element with card in it.
+        // Create template element with card in it using template strings:
         const cardCol = document.createElement("div");
         cardCol.classList.add("col");
         cardCol.innerHTML = `
@@ -171,14 +300,15 @@
     </div>
   </div>`;
 
-        // Add data to the image, title, and description.
+        // Image element Add data to the image, title, and description.
         cardCol
           .querySelector(".card-img-top")
           .setAttribute("src", cardData.imageUrl);
+        // targeting the alt atribute
         cardCol
           .querySelector(".card-img-top")
           .setAttribute("alt", cardData.topText);
-
+        // card-tile use textContent for security reason so we do not add it to the template literal on the template element
         cardCol.querySelector(".card-title").textContent = cardData.topText;
         cardCol.querySelector(".card-text").textContent = cardData.bottomText;
 
