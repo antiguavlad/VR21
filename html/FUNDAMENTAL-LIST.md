@@ -345,3 +345,8 @@ function eventHandler(event) {
 
 - How to Read Technical Documentation for Software Engineers 
 - https://www.youtube.com/watch?v=lwqeNnboh_4
+
+
+JavaScript — Dynamic client-side scripting:
+
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript
