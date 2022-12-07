@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling</title>
+  </head>
+  <body>
+    <!-- "HOW TO STOP EVENT BUBBLING WHEN USING THE EVENTS is by adding event.stopPropagation() after the onclick alert function " -->
+    <div onclick="alert('Grandparent: DAM EVEN I WAS ALERTED')">
+      ALL THE WAY OUT
+      <div
+        onclick="alert('Parent: EVEN I WAS ALERTED'); event.stopPropagation()"
+      >
+        Outer
+        <!-- <div onclick="alert(' Child: I was alerted'); event.stopPropagation()"> -->   <!-- using the event listeter below to achieve the same results using the onclick handler and event-listener: -->
+            <div class="inner">   Inner </div>
+       
+        </div>
+      </div>
+    </div>
+    <!-- using the event listeter below to achieve the same results using the onclick handler and event-listener: -->
+    <script>
+        document.queryCommandValue(".inner").addEventListener("click", (e) => {
+        alert(" I am the inner child");
+        e.stopPropagation();
+
+        });
+    </script>
+  </body>
+</html>
