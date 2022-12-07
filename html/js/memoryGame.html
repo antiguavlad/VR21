@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Memory Game</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      #game div {
+        border: 1px solid black;
+        width: 15%;
+        height: 200px;
+        margin: 10px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Memory Game</h1>
+    <div id="game"></div>
+    <header>
+      <!-- place navbar here -->
+    </header>
+    <main></main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const gameContainer = document.getElementById("game");
+      let card1 = null;
+      let card2 = null;
+      let cardsFlipped = 0;
+      let noClicking = false;
+
+      const COLORS = [
+        "red",
+        "blue",
+        "green",
+        "orange",
+        "purple",
+        "red",
+        "blue",
+        "green",
+        "orange",
+        "purple",
+      ];
+      // here is a helper function to shuffle an array
+      function shuffle(array) {
+        let counter = array.length;
+
+        // While there are elements in the array
+        while (counter > 0) {
+          // Pick a random index
+          let index = Math.floor(Math.random() * counter);
+
+          // Decrease counter by 1
+          counter--;
+
+          // And swap the last element with it
+          let temp = array[counter];
+          array[counter] = array[index];
+          array[index] = temp;
+        }
+        // it returns the same array with values shuffled
+        return array;
+      }
+
+      let shuffledColors = shuffle(COLORS);
+
+      // this function loops over the array of colors
+      // it creates a new div and gives it a class with the value of the color
+      // it also adds an event listener for a click for each card
+      function createDivsForColors(colorArray) {
+        for (let color of colorArray) {
+          // create a new div
+          const newDiv = document.createElement("div");
+          // give it a class attribute for the value we are looping over
+          newDiv.classList.add(color);
+          // call a function handleCardClick when a div is clicked on
+          newDiv.addEventListener("click", handleCardClick);
+          // append the div to the element with an id of game
+          gameContainer.append(newDiv);
+        }
+      }
+      // TODO: Implement this function!
+      // you can use event.target to see which element was clicked
+      //console.log("you just clicked", event.target);
+      function handleCardClick(event) {
+        if (noClicking) return;
+        if (event.target.classList.contains("flipped")) return;
+
+        let currentCard = event.target;
+        currentCard.style.backgroundColor = currentCard.classList[0];
+
+        if (!card1 || !card2) {
+          currentCard.classList.add("flipped");
+          card1 = card1 || currentCard;
+          card2 = currentCard === card1 ? null : currentCard;
+        }
+
+        if (card1 && card2) {
+          noClicking = true;
+          // debugger
+          let gif1 = card1.className;
+          let gif2 = card2.className;
+
+          if (gif1 === gif2) {
+            cardsFlipped += 2;
+            card1.removeEventListener("click", handleCardClick);
+            card2.removeEventListener("click", handleCardClick);
+            card1 = null;
+            card2 = null;
+            noClicking = false;
+          } else {
+            setTimeout(function () {
+              card1.style.backgroundColor = "";
+              card2.style.backgroundColor = "";
+              card1.classList.remove("flipped");
+              card2.classList.remove("flipped");
+              card1 = null;
+              card2 = null;
+              noClicking = false;
+            }, 1000);
+          }
+        }
+
+        if (cardsFlipped === COLORS.length) alert("YOU WIN!");
+      }
+      // when the DOM loads
+      //createDivsForColors(shuffledColors);
+      createDivsForColors(shuffledColors);
+    </script>
+  </body>
+</html>
