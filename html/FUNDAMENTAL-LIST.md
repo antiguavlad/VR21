@@ -122,6 +122,8 @@ As we mentioned in the conceptual videos, null and undefined stand for empty. Th
 - 
 ## Objects Array
 
+containers of data
+
 Array
 
 The Array object, as with arrays in other programming languages, enables storing a collection of multiple items under a single variable name, and has members for performing common array operations.

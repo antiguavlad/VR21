@@ -111,6 +111,7 @@
       // TODO: Implement this function!
       // you can use event.target to see which element was clicked
       //console.log("you just clicked", event.target);
+      //verify the state of the card if not flipped:
       function handleCardClick(event) {
         if (noClicking) return;
         if (event.target.classList.contains("flipped")) return;
@@ -119,8 +120,10 @@
         currentCard.style.backgroundColor = currentCard.classList[0];
 
         if (!card1 || !card2) {
+          //if both are false
           currentCard.classList.add("flipped");
           card1 = card1 || currentCard;
+          // if c1 equals to current card assign c2 to null ele assign c2 to be current card
           card2 = currentCard === card1 ? null : currentCard;
         }
 
@@ -129,7 +132,7 @@
           // debugger
           let gif1 = card1.className;
           let gif2 = card2.className;
-
+          //Increment the card by two and remove listener
           if (gif1 === gif2) {
             cardsFlipped += 2;
             card1.removeEventListener("click", handleCardClick);
