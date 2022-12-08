@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <title>Loan Calculator</title>
+  </head>
+  <body>
+    <h1>Loan Calculator</h1>
+    <div class="container">
+      <div class="row bg-light p-2">
+        <div class="col border-end">
+          <form id="calc-form">
+            <div class="mb-3">
+              <label for="loan-amount" class="form-label">Loan Amount</label>
+              <input
+                type="number"
+                min="0"
+                class="form-control"
+                id="loan-amount"
+                name="loan-amount"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="loan-years" class="form-label">Term in Years</label>
+              <input
+                type="number"
+                min="1"
+                class="form-control"
+                id="loan-years"
+                name="loan-years"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="loan-rate" class="form-label">Yearly Rate</label>
+              <input
+                type="number"
+                min="0"
+                step=".01"
+                class="form-control"
+                id="loan-rate"
+                name="loan-rate"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate</button>
+          </form>
+        </div>
+        <div
+          class="col d-flex flex-column justify-content-center align-items-center"
+        >
+          <p><strong>Monthly Payment</strong></p>
+          <h2 class="fs-1 text-success">
+            <span id="calc-monthly-payment"></span>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../lib/jasmine_examples/calcularor.test.js">
+      // Find DOM element and hold onto it, so we don't have to search for it
+      // every time we use it.
+      const calcForm = document.getElementById("calc-form");
+      const amountInput = document.getElementById("loan-amount");
+      const yearsInput = document.getElementById("loan-years");
+      const rateInput = document.getElementById("loan-rate");
+      const resultArea = document.getElementById("calc-monthly-payment");
+
+      /** Retrieve form values. Returns object: {amount, years, rate}. */
+
+      function getFormValues() {
+        return {
+          amount: Number(amountInput.value),
+          years: Number(yearsInput.value),
+          rate: Number(rateInput.value),
+        };
+      }
+
+      /** Calculate monthly payment and return. */
+
+      function calcMonthlyPayment(amount, years, rate) {
+        const monthsInYear = 12;
+        const monthlyRate = rate / 100 / monthsInYear;
+        const n = Math.floor(years * monthsInYear);
+        return (monthlyRate * amount) / (1 - Math.pow(1 + monthlyRate, -n));
+      }
+
+      /** Get form values, calculate, format to 2 decimal places, and display. */
+
+      function getFormValuesAndDisplayResults() {
+        const { amount, years, rate } = getFormValues();
+        const payment = calcMonthlyPayment(amount, years, rate);
+        resultArea.innerText = "$" + payment.toFixed(2);
+      }
+
+      /** Set initial form values and show initial results. Called at app start. */
+
+      function setInitialValues() {
+        amountInput.value = 10000;
+        yearsInput.value = 10;
+        rateInput.value = 4.5;
+        getFormValuesAndDisplayResults();
+      }
+
+      /** Start: set form defaults & display; attach form submit event listener. */
+
+      function start() {
+        setInitialValues();
+
+        calcForm.addEventListener("submit", function (evt) {
+          evt.preventDefault();
+          getFormValuesAndDisplayResults();
+        });
+      }
+
+      module.exports = calculator;
+      //calculator.test.js
+    </script>
+  </body>
+</html>
