@@ -84,10 +84,58 @@
 //     console.log(data)
 // });
 
-fetch('https://jsonplaceholder.typicode.com/todos/1')
+// used for xml http request 
+// fetch('https://jsonplaceholder.typicode.com/todos/1')
+//     .then(response => response.json())
+//     .then(json => console.log(json))
+
+// try to implement this API into the NBA Players project: 
+
+//fetch return a promise 
+// fetch('https://jsonplaceholder.typicode.com/todos/1')
+//     .then(response => response.json())
+//     //append data to DOM to our page
+//     .then(json => {
+//         console.log(json)
+//         const container = document.querySelector(".container");
+
+//         //debugger;
+
+//         for (let i = 0; i < json.length - 1; i++) {
+//             const p = document.createElement("p");
+//             p.innerText = json[i].title;
+
+//             container.append(p);
+
+//         }
+
+//     });
+
+// attaching an image from the API: 
+//fetch return a promise 
+fetch('https://jsonplaceholder.typicode.com/photos')
     .then(response => response.json())
-    .then(json => console.log(json))
+    //append data to DOM to our page
+    .then(json => {
+        console.log(json)
+        const container = document.querySelector(".container");
+
+        //debugger;
+
+        for (let i = 0; i < json.length - 1; i++) {
+            const p = document.createElement("img");
+            img.setAttribute("src", json[i].url)
+            // p.innerText = json[i].title;
+
+            container.append(p);
+
+        }
+
+    });
 
 
+
+
+//Hit the API 
 
 
