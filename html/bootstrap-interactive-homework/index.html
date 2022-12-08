@@ -118,87 +118,90 @@
             <a class="navbar-brand">NBA Players</a>
             <!-- Button trigger modal -->
             <!-- document.getElmentById('add-button') -->
-            <button type="button" class="btn btn-info" id="add-button">
+            <button
+              type="button"
+              class="btn btn-info"
+              data-bs-toggle="modal"
+              data-bs-target="#createModal"
+            >
               Add
             </button>
-            <!-- using the onclick on the button -->
-            <!-- <button type="button" class="btn btn-info" id="add-button" onclick="addCard()">
-            Add
-          </button> -->
-
-            <!-- Modal -->
-            <div
-              class="modal fade"
-              id="createModal"
-              tabindex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                      Modal title
-                    </h1>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
+          </div>
+        </nav>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="createModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Add New NBA Player
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form id="add-player-form">
+                  <div class="mb-3">
+                    <label for="imageUrl" class="form-label">Image Url</label>
+                    <input
+                      class="form-control"
+                      id="playerImageUrl"
+                      type="url"
+                      name="imageUrl"
+                    />
                   </div>
-                  <div class="modal-body">
-                    <form>
-                      <div class="mb-3">
-                        <label for="imageUrl" class="form-label"
-                          >Image Url</label
-                        >
-                        <input
-                          class="form-control"
-                          id="imageUrl"
-                          type="url"
-                          name="imageUrl"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input
-                          class="form-control"
-                          id="title"
-                          type="text"
-                          id="url"
-                          name="title"
-                        />
-                      </div>
-
-                      <div class="mb-3">
-                        <label for="description" class="form-label"
-                          >Description</label
-                        >
-                        <input
-                          class="form-control"
-                          id="description"
-                          type="text"
-                          name="description"
-                        />
-                      </div>
-                    </form>
+                  <div class="mb-3">
+                    <label for="title" class="form-label">Player Name</label>
+                    <input
+                      class="form-control"
+                      id="playerName"
+                      type="text"
+                      name="title"
+                    />
                   </div>
-                  <div class="modal-footer">
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-bs-dismiss="modal"
+
+                  <div class="mb-3">
+                    <label for="description" class="form-label"
+                      >Description</label
                     >
-                      Close
-                    </button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <input
+                      class="form-control"
+                      id="playerDescription"
+                      type="text"
+                      name="description"
+                    />
                   </div>
-                </div>
+
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="add-player"
+                    data-bs-dismiss="modal"
+                  >
+                    Save
+                  </button>
+                </form>
               </div>
             </div>
           </div>
-        </nav>
+        </div>
       </header>
 
       <main>
@@ -206,7 +209,7 @@
           <!-- Empty row see the code javascript we adding dynamically the row -->
         </div>
 
-        <!-- Modal Area -->
+        <!-- Modal Area Update-->
         <div
           class="modal fade"
           id="updateModal"
@@ -277,9 +280,11 @@
         </div>
 
         <!-- Delete Modal -->
+        <!-- data attributes: data-card-trigger -->
 
         <div
           class="modal fade"
+          data-card-trigger=""
           id="deleteModal"
           tabindex="-1"
           aria-labelledby="exampleModalLabel"
@@ -309,7 +314,14 @@
                 >
                   Cancel
                 </button>
-                <button type="button" class="btn btn-primary">Confirm</button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  id="confirm-delete"
+                  data-bs-dismiss="modal"
+                >
+                  Confirm
+                </button>
               </div>
             </div>
           </div>
@@ -328,77 +340,6 @@
       integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
       crossorigin="anonymous"
     ></script>
-
-    <!-- <script>
-    // How do I create an element:
-    const cardColumn = document.createElement("div"); // in order to create the element = pass the element in this case is the div
-    cardColumn.setAttribute("class", "col-md-3 one two three"); //one two three represent multiple classes in one 
-    cardColumn.innerHTML = "My Card NBA-Player";
-
-
-    //How do I append an element
-    const row = document.querySelector(".row");
-    row.append(cardColumn);
-
-    // Steps of the interactive bootstrap homework: 
-
-    // create a div using the element
-    // set class name using setAttribute
-    // add placeholder text using innerText
-
-    // select element you want to append data 
-    // pass in element 
-    // run program
-
-
-
-
-    // document.getElmentById('add-button');
-    // document.querySelector("#add-button").innerHTML = "Add New Player"
-    // document.querySelector('.card-title').innerHTML = "BASKETBALL CHANGED TITLE" //changed dynamically the .card-title dynamically
-    // // document.querySelector("#add-button").addEventListener("click", (e) => ){}
-
-    //adding the card dynamically: 
-
-    // const contentCard = `
-
-    // <div class="col-md-3">
-    //       <div class="card">
-    //         <img
-    //           src="https://images.complex.com/complex/images/c_scale,f_auto,q_auto,w_1920/fl_lossy,pg_1/utgfcacoxl6hwd2bj2ay/10-most-influential-nba-players-2022-original-nonw?fimg-ssr-default"
-    //           class="card-img-top" alt="..." />
-    //         <div class="card-body">
-    //           <h5 class="card-title">NBA PLAYERS</h5>
-    //           <p class="card-text">
-    //             Some quick example text to build on the NBA PLAYERS and make up
-    //             the bulk of the card's content.
-    //           </p>
-    //           <div>
-    //             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
-    //               Update
-    //             </button>
-    //             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-    //               Delete
-    //             </button>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>  
-    // `;
-
-    // document.querySelector('.row').innerHTML = contentCard;
-
-    // this is the most preferred way to add the event listener
-    document.querySelector("#add-button").addEventListener("click", (e) => {
-      console.log("Add new NBA Player card") //is printing Add new NBA Player card
-    })
-
-    // another way to query below
-    const addCard = () => {
-      console.log("added another NBA-player card using onclick method")
-    } -->
-    <!-- 
-  </script> -->
 
     <script src="./bootstrap-interactive.js"></script>
   </body>
