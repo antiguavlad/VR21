@@ -37,6 +37,8 @@ fetch(
         }
     });
 
+    //to do a curl on the terminal to see if the api is working:
+    //https://api.unsplash.com/search/photos?query=NBA+Players&per_page=20&client_id=bPWVNq3Jw4IKnzObHBgDiC8KoAXPCl7oXg1ldS8TxgU
     //url
     //endpoint
     // query  = ?
