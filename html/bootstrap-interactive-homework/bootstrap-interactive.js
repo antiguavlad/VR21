@@ -1,18 +1,52 @@
+//image validation: 
+
 let cardId = 1; // when the card is created it will give an id starting at 1
 //getting the specific model with its id
 const deleteModal = document.getElementById('deleteModal')
 //add event listerner to the model
-deleteModal.addEventListener('show.bs.modal', setDeleteModalDataAttr);
+deleteModal.addEventListener('show.bs.modal', setOpenModalDataAttr);
+
+const updateModal = document.getElementById('updateModal');
+updateModal.addEventListener('show.bs.modal', setOpenModalDataAttr);
+
+document.querySelector("#updatePlayerForm").addEventListener("submit", updateExistingCard);
 
 document.querySelector("#add-player-form").addEventListener("submit", addNewCard);
 document.querySelector("#confirm-delete").addEventListener("click", deleteCard);
 
-function setDeleteModalDataAttr(event) {
+function updateExistingCard(event) {
+    event.preventDefault();
+    let idToUpdate = updateModal.dataset.cardTrigger;
+    console.log(idToUpdate)
+    //change the existing container from the form and change the inner html of the card
+    let itemToUpdate = document.getElementsByClassName("row")[0].querySelector(`#${idToUpdate}`)
+
+    const form = document.querySelector("#updatePlayerForm");
+    let imageSource = form.querySelector("#updateImageUrl").value;
+    let playerName = form.querySelector("#updatePlayerName").value;
+    let playerDescription = form.querySelector("#updateDescription").value;
+
+    //update image source
+    itemToUpdate.querySelector(".playerImg").src = imageSource;
+    //update player name
+    itemToUpdate.querySelector(".card-title").innerHTML = playerName;
+    //update description
+    itemToUpdate.querySelector(".card-text").innerHTML = playerDescription;
+    //empty form
+    form.reset();
+    //To close on save
+    form.querySelector("[data-bs-dismiss='modal']").click();
+}
+
+function setOpenModalDataAttr(event) {
     //check who opened the model
     let cardOpenModel = event.relatedTarget.closest(".col-md-3").id; // closest looking parent with the matching identifier and class
 
     // set the model attribute to match the card id that open the model
-    deleteModal.dataset.cardTrigger = cardOpenModel;
+    event.target.dataset.cardTrigger = cardOpenModel;
+
+
+
 
 }
 
