@@ -1,18 +1,23 @@
+//local storage 
 const PLAYER_LOCAL_STORAGE = "playerLocalStorage";
-let cardId = 1; // when the card is created it will give an id starting at 1
-//getting the specific model with its id
+
+// when the card is created it will give an id starting at 1
+let cardId = 1;
+
+//getting the specific model with its id  global deleteModal
 const deleteModal = document.getElementById('deleteModal')
-//add event listerner to the model
+//add event listerner to the model -
 deleteModal.addEventListener('show.bs.modal', setOpenModalDataAttr);
 
-//global
+//global updateModal
 const updateModal = document.getElementById('updateModal');
 updateModal.addEventListener('show.bs.modal', setOpenModalDataAttr);
-//global
+
+//global  updateForm 
 const updateForm = document.querySelector("#updatePlayerForm")
 updateForm.addEventListener("submit", gatherFormData);
 
-//global
+//global addForm
 const addForm = document.querySelector("#add-player-form")
 addForm.addEventListener("submit", gatherFormData);
 
@@ -23,7 +28,7 @@ loadStorageItems();
 
 function gatherFormData(event) {
     event.preventDefault();
-    let formType = event.target.id;
+    let formType = event.target.id;//
     let playerData;
     console.log(formType);
 
@@ -37,6 +42,7 @@ function gatherFormData(event) {
         };
     }
     else {
+        //if there is a player then update the player
         const form = document.querySelector("#updatePlayerForm");
         playerData = {
             imageSource: form.querySelector("#updateImageUrl").value,
@@ -48,11 +54,11 @@ function gatherFormData(event) {
 }
 
 
-//Chris sample: I  still need to put the input
+//Check if the image is valid: 
 function isValidImage(typeForm, playerInfo) {
 
     fetch(playerInfo.imageSource, { method: "HEAD" }) //make a http request for the response header HEAD
-        .then(res => {// response 200 = ok 404 = error not found or false  or 500 = server error or false
+        .then(res => {// response 200 = ok,  404 = error not found, or false  or 500 = server error or false
             if (res.ok) {// if response comeback as 200 = true it create a property as ok
                 if (typeForm === "add-player-form") {
                     addNewCard(playerInfo)
@@ -77,12 +83,11 @@ function showErrorMessage(show, type) {  //if true = look first statement     //
     else {
         errorMessage.classList.add("d-none");
     }
-
 }
 
-
+//update existing player card: 
 function updateExistingCard(player) {
-    showErrorMessage(false, "update"); // 
+    showErrorMessage(false, "update"); // this is to void showing the invalid image message
     let idToUpdate = updateModal.dataset.cardTrigger;
     //change the existing container from the form and change the inner html of the card
     let itemToUpdate = document.getElementsByClassName("row")[0].querySelector(`#${idToUpdate}`)
@@ -99,15 +104,27 @@ function updateExistingCard(player) {
     updateForm.querySelector("[data-bs-dismiss='modal']").click();
 }
 
+// Open Modal Data Attribute: 
 function setOpenModalDataAttr(event) {
+    console.log(event)
     //check who opened the model
     let cardOpenModel = event.relatedTarget.closest(".col-md-3").id; // closest looking parent with the matching identifier and class
 
     // set the model attribute to match the card id that open the model
     event.target.dataset.cardTrigger = cardOpenModel;
+    if (event.target.id === "updateModal") {
+        //grabe the input field ussing document.querySelector
+
+
+    }
+
+
+    // TODO: update buttton to work with local storage 
+    // TODO: how to repopulate the url and player name and description from the update form
+
 
 }
-
+//delete card
 function deleteCard(event) {
     //getting the value of the data attribute of the model
     let idToDelete = deleteModal.dataset.cardTrigger;
@@ -119,11 +136,12 @@ function deleteCard(event) {
     removeLocalStorage(idToDelete);
 }
 
+//add mew player
 function addNewCard(player) {
-    showErrorMessage(false, "add-player-form"); // this is to void showing the invalid image 
+    showErrorMessage(false, "add-player-form"); // this is to prevent showing the invalid image massage
     //boolean if it has a property it is coming from local storage
     let isFromStorage = player.hasOwnProperty("itemID"); // to prevent creating new id if exist 
-    // if it is from local storage it should use the id that is coming from local storage  and the or : means for new items added
+    // if it is from local storage it should use the id that is coming from local storage  or : means for new items added
     let playerId = isFromStorage ? player.itemID : `player-${cardId++}`;
 
     const contentCard = `
@@ -153,6 +171,7 @@ function addNewCard(player) {
     document
         .querySelector(".row")
         .insertAdjacentHTML("beforeend", contentCard);
+    // to reset the form
     addForm.reset();
     //To close on save
     addForm.querySelector("[data-bs-dismiss='modal']").click();
@@ -165,31 +184,41 @@ function addNewCard(player) {
 //local storage 
 function addLocalStorage(playerCard) {
     let items = getLocalStorage();
-    items.push(playerCard); // push into the array
-    localStorage.setItem(PLAYER_LOCAL_STORAGE, JSON.stringify(items));//pass the items as a string stringify
+    items.push(playerCard); // push into the array to add
+    localStorage.setItem(PLAYER_LOCAL_STORAGE, JSON.stringify(items));//pass the items as a string using stringify
 }
 
 
 // get items from local storage
 function getLocalStorage() {
+    //nested if statement: 
     return localStorage.getItem(PLAYER_LOCAL_STORAGE) === null ||
         localStorage.getItem(PLAYER_LOCAL_STORAGE) === undefined ||
         localStorage.getItem(PLAYER_LOCAL_STORAGE) === "" ? [] : JSON.parse(localStorage.getItem(PLAYER_LOCAL_STORAGE)) // if items return the existing array
-
-
 }
 
 //remove local storage
 function removeLocalStorage(playerID) {
     let items = getLocalStorage();// getting all the items inside local storage
-    let newData = items.filter(item => item.itemID != playerID) //FILTER function it create a new array and add items not equal to player id
+    //FILTER function items.filter(item => item.itemID != playerID)  it create a new array and add items not equal to player id that was deleted so it is not included on the new array which only include non  deleted items
+    let newData = items.filter(item => item.itemID != playerID)
     //add new array to the local storage and replace the old one that has the deleted item
-    localStorage.setItem(PLAYER_LOCAL_STORAGE, JSON.stringify(newData));
+    localStorage.setItem(PLAYER_LOCAL_STORAGE, JSON.stringify(newData)); //convert the array into string: JSON.stringify(newData))
 }
 
 function loadStorageItems() {
     let items = getLocalStorage();
-    //loop and append to dom
+    //loop and append to dom using the callBack
     items.forEach(item => addNewCard(item))
 
 }
+
+//ADD THE FOLLOWING FEATURES TO THE PROJECT:
+
+// TODO: update buttton to work with local storage 
+// TODO: how to repopulate the url and player name and description from the update form
+
+/**
+ * 
+ * 
+ * */
