@@ -107,6 +107,25 @@
         margin-left: auto;
         margin-right: auto;
       }
+      /* to get all the images in the same size use the following 
+      .card-img{
+        width: 100%;
+        height: 300px;
+        object-fit:cover;
+      } */
+
+      /* to center the letter for the meme text use 
+      .bottom-text{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }*/
+      /* color of the message for the user when enter an invalid URL  */
+      .invalid-img,
+      .invalid-update-img {
+        color: #eb177e;
+      }
     </style>
   </head>
 
@@ -156,9 +175,16 @@
                     <input
                       class="form-control"
                       id="playerImageUrl"
-                      type="url"
+                      type="text"
                       name="imageUrl"
+                      required
                     />
+                    <div class="text-center">
+                      <small class="invalid-img d-none"
+                        >Image is not valid. Please submit a different
+                        image.</small
+                      >
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="title" class="form-label">Player Name</label>
@@ -189,12 +215,7 @@
                   >
                     Close
                   </button>
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                    id="add-player"
-                    data-bs-dismiss="modal"
-                  >
+                  <button type="submit" class="btn btn-primary" id="add-player">
                     Save
                   </button>
                 </form>
@@ -238,9 +259,17 @@
                     <input
                       class="form-control"
                       id="updateImageUrl"
-                      type="url"
+                      type="text"
                       name="imageUrl"
+                      required
                     />
+
+                    <div class="text-center">
+                      <small class="invalid-update-img d-none"
+                        >Image is not valid. Please submit a different
+                        image.</small
+                      >
+                    </div>
                   </div>
                   <div class="mb-3">
                     <label for="title" class="form-label">Player Name</label>
