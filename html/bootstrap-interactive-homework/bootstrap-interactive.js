@@ -28,7 +28,7 @@ loadStorageItems();
 
 function gatherFormData(event) {
     event.preventDefault();
-    let formType = event.target.id;//
+    let formType = event.target.id;//recording the ids for either the add form or update player form to know which form submit. 
     let playerData;
     console.log(formType);
 
@@ -102,6 +102,8 @@ function updateExistingCard(player) {
     updateForm.reset();
     //To close on save
     updateForm.querySelector("[data-bs-dismiss='modal']").click();
+    player.itemID = idToUpdate; //giving the id to the update
+    updateLocalStorage(player);
 }
 
 // Open Modal Data Attribute: 
@@ -113,15 +115,15 @@ function setOpenModalDataAttr(event) {
     // set the model attribute to match the card id that open the model
     event.target.dataset.cardTrigger = cardOpenModel;
     if (event.target.id === "updateModal") {
+
+        let containerItem = document.querySelector(".row");
+        let cardToUpdate = containerItem.querySelector(`#${cardOpenModel}`)// return card
+
         //grabe the input field ussing document.querySelector
-
-
+        updateForm.querySelector("#updateImageUrl").value = cardToUpdate.querySelector(".playerImg").src;
+        updateForm.querySelector("#updatePlayerName").value = cardToUpdate.querySelector(".card-title").innerText;
+        updateForm.querySelector("#updateDescription").value = cardToUpdate.querySelector(".card-text").innerText;
     }
-
-
-    // TODO: update buttton to work with local storage 
-    // TODO: how to repopulate the url and player name and description from the update form
-
 
 }
 //delete card
@@ -197,11 +199,22 @@ function getLocalStorage() {
         localStorage.getItem(PLAYER_LOCAL_STORAGE) === "" ? [] : JSON.parse(localStorage.getItem(PLAYER_LOCAL_STORAGE)) // if items return the existing array
 }
 
+//updateLocalStorage()
+function updateLocalStorage(updateInfo) {
+    let items = getLocalStorage();
+    //replace in the array 
+    // pass id and object
+    let index = items.findIndex(item => item.itemID === updateInfo.itemID)// find the index of item in local storage where the id matches the id of the card that is being updated
+    items.splice(index, 1, updateInfo); // remove and update 
+    //reset items in local storage
+    localStorage.setItem(PLAYER_LOCAL_STORAGE, JSON.stringify(items));
+}
+
 //remove local storage
 function removeLocalStorage(playerID) {
     let items = getLocalStorage();// getting all the items inside local storage
     //FILTER function items.filter(item => item.itemID != playerID)  it create a new array and add items not equal to player id that was deleted so it is not included on the new array which only include non  deleted items
-    let newData = items.filter(item => item.itemID != playerID)
+    let newData = items.filter(item => item.itemID != playerID);
     //add new array to the local storage and replace the old one that has the deleted item
     localStorage.setItem(PLAYER_LOCAL_STORAGE, JSON.stringify(newData)); //convert the array into string: JSON.stringify(newData))
 }
@@ -212,13 +225,3 @@ function loadStorageItems() {
     items.forEach(item => addNewCard(item))
 
 }
-
-//ADD THE FOLLOWING FEATURES TO THE PROJECT:
-
-// TODO: update buttton to work with local storage 
-// TODO: how to repopulate the url and player name and description from the update form
-
-/**
- * 
- * 
- * */
