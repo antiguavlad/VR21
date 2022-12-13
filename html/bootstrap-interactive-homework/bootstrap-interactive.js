@@ -27,8 +27,9 @@ document.querySelector("#confirm-delete").addEventListener("click", deleteCard);
 loadStorageItems();
 
 function gatherFormData(event) {
-    event.preventDefault();
-    let formType = event.target.id;//recording the ids for either the add form or update player form to know which form submit. 
+    event.preventDefault(); //prevent from refreshing the page
+    //recording the ids for either the add form or update player form to know which form submit. 
+    let formType = event.target.id;
     let playerData;
     console.log(formType);
 
